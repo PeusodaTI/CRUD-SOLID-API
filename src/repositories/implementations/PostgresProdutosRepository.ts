@@ -21,7 +21,7 @@ export class PostgresProdutosRepository implements IProdutosRepository {
     }
     
     async save(produto: Produto): Promise<void> {
-        this.ormRepository.produto.create({
+        await this.ormRepository.produto.create({
             data: {
                 nome: produto.nome,
                 valor: produto.valor,
@@ -31,7 +31,9 @@ export class PostgresProdutosRepository implements IProdutosRepository {
     }
     
     async getProdutos(): Promise<Produto[]> {
-        const produtos = this.ormRepository.produto.findMany()
+        const produtos = await this.ormRepository.produto.findMany()
+
+        console.log(produtos)
 
         return produtos
     }
