@@ -14,9 +14,9 @@ datasource db {
 }
 
 model Produto {
-  id        String  @id @default(uuid())
-  nome      String
-  valor     Decimal
+  id        String @id @default(uuid())
+  nome      String @unique
+  valor     Float
   descricao String
 
   @@map("produtos")
