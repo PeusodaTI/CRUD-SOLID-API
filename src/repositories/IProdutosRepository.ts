@@ -6,4 +6,5 @@ export interface IProdutosRepository {
     getProdutos(): Promise<Produto[]>
     findById(id: string): Promise<Produto | null>
     updateProduto(produto: Produto): Promise<Produto>
+    deleteProduto(id: string): Promise<void>
 }

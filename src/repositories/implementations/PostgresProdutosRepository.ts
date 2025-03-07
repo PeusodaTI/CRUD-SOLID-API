@@ -56,4 +56,10 @@ export class PostgresProdutosRepository implements IProdutosRepository {
 
         return updateProduto
     }
+
+    async deleteProduto(id: string): Promise<void> {
+        await this.ormRepository.produto.delete({
+            where: { id }
+        })
+    }
 }

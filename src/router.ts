@@ -2,6 +2,7 @@ import { Router } from 'express'
 import { createProdutoController } from './useCases/CreateProduto'
 import { getProdutosController } from './useCases/GetProduto/index'
 import { updateProdutoController } from './useCases/UpdateProduto'
+import { deleteProdutoController } from './useCases/DeleteProduto'
 
 const router = Router()
 
@@ -15,6 +16,10 @@ router.get('/produtos', async(request, response) => {
 
 router.put('/produtos', async(request, response) => {
     await updateProdutoController.handle(request, response)
+})
+
+router.delete('/produtos', async(request, response) => {
+    await deleteProdutoController.handle(request, response)
 })
 
 export { router }
