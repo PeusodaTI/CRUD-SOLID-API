@@ -1,5 +1,5 @@
-import { Produto } from '../../entities/Produto';
-import { IProdutosRepository } from '../../repositories/IProdutosRepository';
+import { Produto } from '../../entities/Produto'
+import { IProdutosRepository } from '../../repositories/IProdutosRepository'
 import { ICreateProdutoDTO } from './ICreateProdutoDTO'
 
 export class CreateProdutoUseCase {

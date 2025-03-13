@@ -1,5 +1,6 @@
-import { Request, Response } from "express";
-import { CreateProdutoUseCase } from "./CreateProdutoUseCase";
+import { Request, Response } from 'express'
+
+import { CreateProdutoUseCase } from './CreateProdutoUseCase'
 
 export class CreateProdutoController {
     constructor(

@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+
 import { DeleteProdutoUseCase } from './DeleteProdutoUseCase'
 
 export class DeleteProdutoController {

@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+
 import { Produto } from '../../entities/Produto'
 import { prisma } from '../../utils/prisma-database'
 import { IProdutosRepository } from '../IProdutosRepository'

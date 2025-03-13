@@ -1,4 +1,6 @@
-import { PostgresProdutosRepository } from '../../repositories/implementations/PostgresProdutosRepository'
+import { 
+    PostgresProdutosRepository 
+} from '../../repositories/implementations/PostgresProdutosRepository'
 import { DeleteProdutoController } from './DeleteProdutoController'
 import { DeleteProdutoUseCase } from './DeleteProdutoUseCase'
 

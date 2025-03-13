@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+
 import { UpdateProdutoUseCase } from './UpdateProdutoUseCase'
 
 export class UpdateProdutoController {

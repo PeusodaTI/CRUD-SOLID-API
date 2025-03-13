@@ -1,4 +1,5 @@
 import { Router } from 'express'
+
 import { createProdutoController } from './useCases/CreateProduto'
 import { getProdutosController } from './useCases/GetProduto/index'
 import { updateProdutoController } from './useCases/UpdateProduto'
