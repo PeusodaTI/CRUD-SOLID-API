@@ -1,6 +1,6 @@
 export interface IUpdateProdutoDTO {
     id: string,
-    nome: string,
-    valor: number,
-    descricao: string
+    nome?: string,
+    valor?: number,
+    descricao?: string
 }

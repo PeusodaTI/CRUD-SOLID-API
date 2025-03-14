@@ -1,3 +1,4 @@
+import { Produto } from '../../entities/Produto'
 import { 
     PostgresProdutosRepository 
 } from '../../repositories/implementations/PostgresProdutosRepository'
@@ -14,7 +15,12 @@ export class UpdateProdutoUseCase {
         if (!produto) {
             throw new Error('Não existe produto cadastrado com esse id.')
         }
+
+        const produtoUpdate: Produto = {
+            ... produto,
+            ... data
+        }       
         
-        await this.postgresProdutosRepository.updateProduto(data)
+        await this.postgresProdutosRepository.updateProduto(produtoUpdate)
     }
 }
