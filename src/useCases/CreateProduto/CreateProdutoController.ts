@@ -1,7 +1,8 @@
 import { Request, Response } from 'express'
-import { z } from 'zod'
+import { z, ZodError } from 'zod'
 
 import { CreateProdutoUseCase } from './CreateProdutoUseCase'
+import { AppErrors } from '../../errors/AppErrors'
 
 export class CreateProdutoController {
     constructor(
@@ -35,7 +36,24 @@ export class CreateProdutoController {
 
             return response.status(201).json('Produto cadastrado.')
         } catch (error) {
-            return response.status(400).json({ 'Erro ao criar produto.': error })
+            if (error instanceof ZodError) {
+                return response.status(400).json({ message: 'Erro de validação.', error })    
+            }
+
+            if (error instanceof AppErrors) {
+                return response.status(error.statusCode).json({ message: error.message })    
+            }
+
+            if (error instanceof Error) {
+                return response.status(500).json({ 
+                    error: 'Internal Server Error.', 
+                    message: error.message 
+                })
+            }
+
+            return response.status(500).json({ 
+                error: 'Internal Server Error.',
+                message: 'Erro interno não identificado.' })
         }
     }
 }

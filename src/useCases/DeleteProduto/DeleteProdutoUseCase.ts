@@ -1,3 +1,4 @@
+import { AppErrors } from '../../errors/AppErrors'
 import { 
     PostgresProdutosRepository 
 } from '../../repositories/implementations/PostgresProdutosRepository'
@@ -11,7 +12,7 @@ export class DeleteProdutoUseCase {
         const produto = this.postgresProdutosRepository.findById(id)
 
         if (!produto) {
-            throw new Error('Não existe produto cadastrado com este id.')
+            throw new AppErrors('Não existe produto cadastrado com este id.', 404)
         }
 
         await this.postgresProdutosRepository.deleteProduto(id)

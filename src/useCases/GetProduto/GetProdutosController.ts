@@ -13,8 +13,17 @@ export class GetProdutosController {
 
             return response.status(200).json(produtos)
         } catch (error) {
-            return response.status(400).json('Erro ao tentar buscar produtos.')
-        }
+            if (error instanceof Error) {
+                return response.status(500).json({ 
+                    error: 'Internal Server Error.', 
+                    message: error.message 
+                })
+            }
 
+            return response.status(500).json({ 
+                error: 'Internal Server Error.',
+                message: 'Erro interno não identificado.' 
+            })
+        }
     }
 }

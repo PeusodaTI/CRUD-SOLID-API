@@ -1,4 +1,5 @@
 import { Produto } from '../../entities/Produto'
+import { AppErrors } from '../../errors/AppErrors'
 import { IProdutosRepository } from '../../repositories/IProdutosRepository'
 import { ICreateProdutoDTO } from './ICreateProdutoDTO'
 
@@ -13,7 +14,7 @@ export class CreateProdutoUseCase {
         const produtoAlreadyExist = await this.produtosRepository.findByName(produto.nome) 
 
         if (produtoAlreadyExist) {
-            throw new Error('Já existe um produto cadastrado.')
+            throw new AppErrors('Já existe um produto cadastrado.', 409)
         }
 
         await this.produtosRepository.save(produto)
