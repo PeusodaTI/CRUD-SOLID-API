@@ -10,19 +10,23 @@ SOLID-API é uma aplicação desenvolvida com o objetivo de aprimorar meus conhe
 A aplicação consiste em uma ferramenta simples para realizar operações básicas de banco de dados: cadastro, leitura, atualização e exclusão (CRUD).
 
 🏗️ Arquitetura baseada em Casos de Uso
+
 Durante o desenvolvimento, optei por uma arquitetura baseada em Casos de Uso, onde a lógica de negócio é centralizada em classes específicas para cada ação da aplicação. Essa abordagem torna o código mais modular e organizado, facilitando a reutilização, testes e manutenção da API.
 
 🔹 Aplicação dos Princípios SOLID
+
 Ao longo do projeto, percebi na prática a importância dos princípios SOLID, principalmente:
 
 S — Single Responsibility Principle (Princípio da Responsabilidade Única): Cada classe tem uma única responsabilidade, evitando acoplamentos desnecessários e facilitando a manutenção do código.
+
 D — Dependency Inversion Principle (Princípio da Inversão da Dependência): A aplicação utiliza injeção de dependências, tornando os componentes menos dependentes de implementações concretas e mais flexíveis a mudanças.
 
 📄 Documentação e Testes
+
 Para facilitar a interação com a API, a documentação foi gerada automaticamente com Swagger UI, permitindo que qualquer usuário teste os endpoints de forma intuitiva e sem a necessidade de ferramentas externas.
 
 ## Layout Swagger
-![Swagger](https://github.com/PeusodaTI/autenticacao-jwt/blob/main/assets/swagger.png)
+![Swagger](https://github.com/PeusodaTI/CRUD-SOLID-API/blob/main/assets/swagger.png)
 
 # 📌 Tecnologias utilizadas 
 ## Back end
@@ -41,6 +45,7 @@ Para facilitar a interação com a API, a documentação foi gerada automaticame
 
 # 📂 Estrutura do Projeto
 
+```plaintext
 📦 SOLID-API
  ┣ 📂 src
  ┃ ┣ 📂 config             # Database e SwaggerUI
