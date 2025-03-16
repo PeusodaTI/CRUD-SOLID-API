@@ -2,9 +2,14 @@
   "name": "crud-solid-api",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "node": "20"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx watch src/server.ts",
+    "build": "tsup src",
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +17,7 @@
   "description": "",
   "devDependencies": {
     "prisma": "^6.4.0",
+    "tsup": "^8.4.0",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3"
   },

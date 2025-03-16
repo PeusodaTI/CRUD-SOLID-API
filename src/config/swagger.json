@@ -149,11 +149,6 @@
             }
         },
         "/produtos/{id}": {
-            "get": {
-                "sumary": "Rota para cadastrar um produto.",
-                "description": "Esta rota é responsável por cadastrar um produto.",
-                "tags": ["Produtos"]
-            },
             "put": {
                 "sumary": "Rota para atualizar um produto.",
                 "description": "Esta rota é responsável por atualizar um produto.",
@@ -227,6 +222,9 @@
                                 }
                             }
                         }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/ErroValidacao"
                     },
                     "404": {
                         "$ref": "#/components/responses/ProdutoInexistente"
