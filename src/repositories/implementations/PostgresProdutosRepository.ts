@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 
 import { Produto } from '../../entities/Produto'
-import { prisma } from '../../utils/prisma-database'
+import { prisma } from '../../config/prisma-database'
 import { IProdutosRepository } from '../IProdutosRepository'
 
 export class PostgresProdutosRepository implements IProdutosRepository {

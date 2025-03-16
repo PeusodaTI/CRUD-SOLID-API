@@ -27,7 +27,7 @@ export class CreateProdutoController {
     
             const { nome, valor, descricao } = bodySchema.parse(request.body)
 
-            this.createProdutoUseCase.execute({
+            await this.createProdutoUseCase.execute({
                 nome,
                 valor,
                 descricao
@@ -35,7 +35,7 @@ export class CreateProdutoController {
 
             return response.status(201).json('Produto cadastrado.')
         } catch (error) {
-            return response.status(400).json({'Erro ao criar produto.': error})
+            return response.status(400).json({ 'Erro ao criar produto.': error })
         }
     }
 }

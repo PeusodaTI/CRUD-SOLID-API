@@ -1,0 +1,122 @@
+{
+    "$schema": "https://json.schemastore.org/openapi-3.0.json",
+    "openapi": "3.0.4",
+    "info": {
+        "title": "API Restful - Aplicando Conceitos de SOLID.",
+        "description": "Essa API tem como objetivo implementar os conceitos de SOLID usando Node e Typescript.",
+        "contact": {
+            "name": "API Support",
+            "email": "pedrohsd.dev@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3333/v1",
+            "description": "API de Desenvolvimento"
+        },
+        {
+            "url": "http://localhost:3333/v1",
+            "description": "API de Produção"
+        }
+    ],
+    "paths": {
+        "/produtos": {
+            "post": {
+                "sumary": "Rota para cadastrar um produto.",
+                "description": "Esta rota é responsável por cadastrar um produto.",
+                "tags": ["Produtos"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schema/Produto"
+                            },
+                            "examples": {
+                                "Produto": {
+                                    "value": {
+                                        "nome": "Abacate",
+                                        "valor": 2.50,
+                                        "descricao": "Abacate do Seu Zé."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Sucesso.",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Sucesso": {
+                                        "sumary": "Sucesso.",
+                                        "value": {
+                                            "message": "Produto cadastrado."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro de validação ou outro erro do cliente.",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Produto já cadastrado": {
+                                        "sumary": "Usuário já cadastrado.",
+                                        "value": {
+                                            "message": "Já existe um produto cadastrado com este nome."
+                                        }
+                                    },
+                                    "Erro de validação": {
+                                        "sumary": "Erro de validação dos dados enviados.",
+                                        "value": { 
+                                            "code": "invalid_type",
+                                            "expected": "string",
+                                            "received": "undefined",
+                                            "path": [
+                                                "nome"
+                                            ]
+                                            ,
+                                            "message": "O campo nome é obrigatório.",
+                                            "invalid_type_error": "O campo nome deve ser do tipo String."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schema": {
+            "Produto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "nome": {
+                        "type": "string",
+                        "required": "true"
+                    },
+                    "valor": {
+                        "type": "number",
+                        "format": "float",
+                        "required": "true"
+                    },
+                    "descricao": {
+                        "type": "string",
+                        "required": "true"
+                    }
+                }
+            }
+        }
+    }
+}
