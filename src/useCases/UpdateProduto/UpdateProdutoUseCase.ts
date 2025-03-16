@@ -22,6 +22,6 @@ export class UpdateProdutoUseCase {
             ... data
         }       
         
-        await this.postgresProdutosRepository.updateProduto(produtoUpdate)
+        return await this.postgresProdutosRepository.updateProduto(produtoUpdate)
     }
 }

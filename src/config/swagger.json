@@ -61,16 +61,10 @@
                         }
                     },
                     "400": {
-                        "description": "Erro de validação ou outro erro do cliente.",
+                        "description": "Erro de validação.",
                         "content": {
                             "application/json": {
                                 "examples": {
-                                    "Produto já cadastrado": {
-                                        "sumary": "Usuário já cadastrado.",
-                                        "value": {
-                                            "message": "Já existe um produto cadastrado com este nome."
-                                        }
-                                    },
                                     "Erro de validação": {
                                         "sumary": "Erro de validação dos dados enviados.",
                                         "value": { 
@@ -88,6 +82,157 @@
                                 }
                             }
                         }
+                    },
+                    "409": {
+                        "description": "Conflito de dados.",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Produto já cadastrado": {
+                                        "sumary": "Produto já cadastrado.",
+                                        "value": {
+                                            "message": "Já existe um produto cadastrado com este nome."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Internal server Error": {
+                                        "sumary": "Internal Server Error.",
+                                        "value": {
+                                            "message": "Erro interno não identificado."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "sumary": "Rota para buscar todos os produtos.",
+                "description": "Esta rota é responsável por buscar todos os produtos.",
+                "tags": ["Produtos"],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                "$ref": "#/components/schema/ProdutosArray"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error.",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Internal server Error": {
+                                        "sumary": "Internal Server Error.",
+                                        "value": {
+                                            "message": "Erro interno não identificado."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/produtos/{id}": {
+            "get": {
+                "sumary": "Rota para cadastrar um produto.",
+                "description": "Esta rota é responsável por cadastrar um produto.",
+                "tags": ["Produtos"]
+            },
+            "put": {
+                "sumary": "Rota para atualizar um produto.",
+                "description": "Esta rota é responsável por atualizar um produto.",
+                "tags": ["Produtos"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schema/ProdutoUpdate"
+                            },
+                            "examples": {
+                                "Produto": {
+                                    "value": {
+                                        "nome": "Acerola",
+                                        "valor": 10.00,
+                                        "descricao": "Produto do Campo."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                "$ref": "#/components/schema/Produto"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/ErroValidacao"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/ProdutoInexistente"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                }
+            },
+            "delete": {
+                "sumary": "Rota para deletar um produto.",
+                "description": "Esta rota é responsável por deletar um produto.",
+                "tags": ["Produtos"],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucesso.",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Sucesso": {
+                                        "sumary": "Sucesso.",
+                                        "value": {
+                                            "message": "Produto excluído."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/ProdutoInexistente"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
                     }
                 }
             }
@@ -114,6 +259,114 @@
                     "descricao": {
                         "type": "string",
                         "required": "true"
+                    }
+                }
+            },
+            "ProdutosArray": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "nome": {
+                            "type": "string",
+                            "required": "true"
+                        },
+                        "valor": {
+                            "type": "number",
+                            "format": "float",
+                            "required": "true"
+                        },
+                        "descricao": {
+                            "type": "string",
+                            "required": "true"
+                        }
+                    }
+                }
+            },
+            "ProdutoUpdate": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "required": "true"
+                    },
+                    "valor": {
+                        "type": "number",
+                        "format": "float",
+                        "required": "true"
+                    },
+                    "descricao": {
+                        "type": "string",
+                        "required": "true"
+                    }
+                }
+            }
+        },
+        "parameters": {
+            "id": {
+                "name": "id",
+                "in": "path",
+                "description": "Id do produto.",
+                "type": "string",
+                "format": "uuid",
+                "required": true,
+                "example": "8a1dfb34-c487-404d-ae7b-8464da1679f0"
+            }
+        },
+        "responses": {
+            "ProdutoInexistente": {
+                "description": "Produto não encontrado",
+                "content": {
+                    "application/json": {
+                        "examples": {
+                            "Produto não encontrado": {
+                                "value": {
+                                    "message": "Não existe produto cadastrado com esse id."
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "ErroValidacao": {
+                "description": "Erro de validação.",
+                "content": {
+                    "application/json": {
+                        "examples": {
+                            "Erro de validação": {
+                                "sumary": "Erro de validação dos dados enviados.",
+                                "value": { 
+                                    "code": "invalid_type",
+                                    "expected": "string",
+                                    "received": "undefined",
+                                    "path": [
+                                        "nome"
+                                    ]
+                                    ,
+                                    "message": "O campo nome é obrigatório.",
+                                    "invalid_type_error": "O campo nome deve ser do tipo String."
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "InternalServerError": {
+                "description": "Internal Server Error.",
+                "content": {
+                    "application/json": {
+                        "examples": {
+                            "Internal server Error": {
+                                "sumary": "Internal Server Error.",
+                                "value": {
+                                    "message": "Erro interno não identificado."
+                                }
+                            }
+                        }
                     }
                 }
             }

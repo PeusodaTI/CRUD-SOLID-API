@@ -15,11 +15,11 @@ produtoRouter.get('/', async(request, response) => {
     await getProdutosController.handle(request, response)
 })
 
-produtoRouter.put('/', async(request, response) => {
+produtoRouter.put('/:id', async(request, response) => {
     await updateProdutoController.handle(request, response)
 })
 
-produtoRouter.delete('/', async(request, response) => {
+produtoRouter.delete('/:id', async(request, response) => {
     await deleteProdutoController.handle(request, response)
 })
 

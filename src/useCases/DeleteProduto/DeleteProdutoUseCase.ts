@@ -9,7 +9,9 @@ export class DeleteProdutoUseCase {
     ) {}
 
     async execute(id: string) {
-        const produto = this.postgresProdutosRepository.findById(id)
+        const produto = await this.postgresProdutosRepository.findById(id)
+
+        console.log(produto)
 
         if (!produto) {
             throw new AppErrors('Não existe produto cadastrado com este id.', 404)
