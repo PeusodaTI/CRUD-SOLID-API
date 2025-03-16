@@ -16,7 +16,7 @@
             "description": "API de Desenvolvimento"
         },
         {
-            "url": "http://localhost:3333/v1",
+            "url": "https://solid-api-be2r.onrender.com/v1",
             "description": "API de Produção"
         }
     ],
